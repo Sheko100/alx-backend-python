@@ -4,7 +4,7 @@
 from typing import Sequence, Any, Union
 
 
-def safe_first_element(lst: Sequence[Any]) -> Union[..., None]:
+def safe_first_element(lst: Sequence[Any]) -> Union[Any, None]:
     """Checks if the argument is defined before accessing it"""
     if lst:
         return lst[0]
