@@ -22,6 +22,11 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
             tmp: float = wait_list[i]
             wait_list[i] = wait_list[i + 1]
             wait_list[i + 1] = tmp
+        elif i - 1 >= 0 and wait_list[i - 1] > wait_list[i]:
+            tmp: float = wait_list[i]
+            wait_list[i] = wait_list[i - 1]
+            wait_list[i - 1] = tmp
+
         i += 1
 
     return wait_list
