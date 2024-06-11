@@ -16,6 +16,7 @@ async def measure_runtime() -> float:
             async_comprehension(),
             async_comprehension(),
             async_comprehension(),
+            return_exceptions=True
             )
     runtime: float = time.time() - start
     return runtime
