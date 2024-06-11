@@ -5,7 +5,7 @@ import asyncio
 import random
 
 
-async def wait_random(max_delay: float = 10):
+async def wait_random(max_delay: float = 10) -> float:
     """Waits for a random time between 0 to max_delay"""
 
     rndm: float = random.uniform(0, max_delay)
