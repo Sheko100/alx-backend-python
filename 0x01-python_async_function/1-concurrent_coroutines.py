@@ -14,12 +14,12 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
         wait = await wait_random(max_delay)
         wait_list.append(wait)
 
-    return asc_sort(wait_list)
+    return asc_sort(wait_list.copy())
 
 
 def asc_sort(lst: List):
     """Sorts a list to be in ascending order"""
-    srtd_lst: List = lst[:]
+    srtd_lst: List = lst
     ri: int = 0
     le: int = 0
     lst_len: int = len(lst)
