@@ -15,30 +15,3 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
         wait_list.append(wait)
 
     return sorted(wait_list.copy())
-
-
-def asc_sort(lst: List):
-    """Sorts a list to be in ascending order"""
-    srtd_lst: List = lst
-    ri: int = 0
-    le: int = 0
-    lst_len: int = len(lst)
-
-    while ri < lst_len - 1:
-        if srtd_lst[ri] > srtd_lst[ri+1]:
-            tmp = srtd_lst[ri]
-            srtd_lst[ri] = srtd_lst[ri+1]
-            srtd_lst[ri+1] = tmp
-
-            le = ri
-            while le > 0:
-                if srtd_lst[le] < srtd_lst[le-1]:
-                    tmp = srtd_lst[le]
-                    srtd_lst[le] = srtd_lst[le-1]
-                    srtd_lst[le-1] = tmp
-                else:
-                    break
-                le -= 1
-        ri += 1
-
-    return srtd_lst
