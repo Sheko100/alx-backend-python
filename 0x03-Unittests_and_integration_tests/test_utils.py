@@ -23,6 +23,5 @@ class TestAccessNestedMap(unittest.TestCase):
             path: Sequence,
             expected: Union[int, Dict]
             ):
-        """Testing that access_nested_map returns the expected value
-        """
+        """Testing that access_nested_map returns the expected value"""
         self.assertEual(access_nested_map(nested_map, path), expected)
