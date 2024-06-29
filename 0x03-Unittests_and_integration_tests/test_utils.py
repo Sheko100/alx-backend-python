@@ -12,17 +12,15 @@ class TestAccessNestedMap(unittest.TestCase):
     """
 
     @parameterized.expand([
-        ("simple", {"a": 1}, ("a", ), 1),
-        ("short path", {"a": {"b": 2}}, ("a", ), {"b": 2}),
-        ("whole path", {"a": {"b": 2}}, ("a", "b", ), 2)
+        ({"a": 1}, ("a", ), 1),
+        ({"a": {"b": 2}}, ("a", ), {"b": 2}),
+        ({"a": {"b": 2}}, ("a", "b", ), 2)
         ])
     def test_access_nested_map(
             self,
-            name: str,
             nested_map: Dict,
             path: Sequence,
             expected: Union[int, Dict]
             ) -> None:
         """Testing that access_nested_map returns the expected value"""
-        res = access_nested_map(nested_map, path)
-        self.assertEqual(res, expected)
+        self.assertEqual(access_nested_map(nested_map, path), expected)
