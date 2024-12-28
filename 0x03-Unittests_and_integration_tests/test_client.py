@@ -21,5 +21,5 @@ class TestGithubOrgClient(unittest.TestCase):
         """
         client = GithubOrgClient(org)
         url = client.ORG_URL.format(org=org)
-        client.org()
+        client.org
         mock.assert_called_once_with(url)
