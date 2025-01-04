@@ -3,8 +3,9 @@
 """
 import unittest
 from unittest.mock import patch, PropertyMock
-from parameterized import parameterized
+from parameterized import parameterized, parameterized_class
 from client import GithubOrgClient
+from fixtures import TEST_PAYLOAD
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -56,3 +57,39 @@ class TestGithubOrgClient(unittest.TestCase):
         """
         has_license = GithubOrgClient.has_license(test_repo, test_license_key)
         self.assertEqual(has_license, expected)
+
+
+@parameterized_class((
+    'org_payload', 'repos_payload',
+    'expected_repos', 'apache2_repos'),
+    TEST_PAYLOAD
+    )
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """Integration test for GithubOrgClient class
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        """Intilaizes a patcher with a side_effect
+        """
+        def which_payload(*args):
+            """Handles the passed url
+            """
+            url = args[0]
+            return_value = cls.org_payload
+            if url == cls.org_payload['repos_url']:
+                return_value = cls.repos_payload
+            patcher.return_value.json.return_value = return_value
+
+            return patcher.return_value
+
+        patcher = patch('requests.get', side_effect=which_payload).start()
+
+        cls.get_patcher = patcher
+
+    @classmethod
+    def tearDownClass(cls):
+        """Stops the patcher
+        """
+        patcher = cls.get_patcher
+        patcher.stop()
