@@ -76,7 +76,6 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
             """Handles the passed url
             """
             patcher = cls.get_patcher.start()
-            print(patcher)
             url = args[0]
             return_value = cls.org_payload
             if url == cls.org_payload['repos_url']:
