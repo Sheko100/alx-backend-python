@@ -83,7 +83,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
             return patcher.return_value
 
-        patcher = patch('requests.get', side_effect=which_payload).start()
+        patcher = patch('utils.requests.get', side_effect=which_payload).start()
 
         cls._client = GithubOrgClient('google')
         cls.get_patcher = patcher
