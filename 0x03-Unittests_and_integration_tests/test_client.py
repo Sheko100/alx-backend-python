@@ -75,7 +75,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         def which_payload(*args):
             """Handles the passed url
             """
-            patcher = cls.get_patcher
+            patcher = cls.get_patcher.start()
             print(patcher)
             url = args[0]
             return_value = cls.org_payload
