@@ -75,6 +75,8 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         def which_payload(*args):
             """Handles the passed url
             """
+            patcher = cls.get_patcher
+            print(patcher)
             url = args[0]
             return_value = cls.org_payload
             if url == cls.org_payload['repos_url']:
@@ -83,10 +85,9 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
             return patcher.return_value
 
-        patcher = patch('utils.requests.get', side_effect=which_payload).start()
-
+        cls.get_patcher = patch('requests.get', side_effect=which_payload)
         cls._client = GithubOrgClient('google')
-        cls.get_patcher = patcher
+        cls.get_patcher.start()
 
     @classmethod
     def tearDownClass(cls):
