@@ -96,13 +96,13 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         patcher.stop()
 
     def test_public_repos(self):
-        """Integration test for public_repos methos
+        """Tests public_repos method
         """
         client = self._client
         self.assertEqual(client.public_repos(), self.expected_repos)
 
     def test_public_repos_with_license(self):
-        """Tests repos with license
+        """Tests public_repos with license
         """
         client = self._client
         repos = client.public_repos(license='apache-2.0')
